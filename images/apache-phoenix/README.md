@@ -4,4 +4,4 @@ Docker image for [Apache Phoenix](https://phoenix.apache.org/)
  - 4.14.2
 
 ##### Requires:
- - HBase version >= 1.4.10
+ - HBase >= 1.4.10
