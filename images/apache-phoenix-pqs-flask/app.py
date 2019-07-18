@@ -1,5 +1,7 @@
-import time
+import os
 import phoenixdb
+import socket
+import time
 from flask import Flask
 
 app = Flask(__name__)
@@ -17,11 +19,16 @@ def get_hit_count():
         try:
             cursor.execute("UPSERT INTO HITS.HITS(id) VALUES(NEXT VALUE FOR HITS.HIT_SEQUENCE)")
             cursor.execute("SELECT MAX(ID) FROM HITS.HITS")
-            return cursor.fetchone()
+            count = cursor.fetchone()
         except phoenixdb.errors.InterfaceError as exc:
             raise exc
+
+        html = "<h3>Hello from {name}!</h3>" \
+           "Hostname: <b>{hostname}</b><br/>" \
+           "This site has been visited: <b>{visits}</b> times!"
+        return html.format(name=os.getenv("NAME", "Apache Phoenix"), hostname=socket.gethostname(), visits=count)
 
 @app.route('/')
 def hello():
     count = get_hit_count()
-    return 'Hello from Flask! I have been seen {} times.\n'.format(count)
+    return '{}.\n'.format(count)
