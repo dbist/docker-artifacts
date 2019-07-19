@@ -1,4 +1,5 @@
 import os
+import phoenixdb
 import socket
 import time
 from flask import Flask
@@ -7,7 +8,12 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    count = "<b>cannot connect to Phoenix, counter disabled</b>" 
+    try:
+        conn = phoenixdb.connect("http://pqs:8765", autocommit=True)
+        cursor = conn.cursor()
+        count = cursor.fetchone()
+    except phoenixdb.errors.InterfaceError:
+        count = "<b>cannot connect to Phoenix, counter disabled</b>"
 
     html = "<h3>Hello from Flask!</h3>" \
            "Hostname: <b>{hostname}</b><br/>" \
