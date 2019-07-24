@@ -1,9 +1,11 @@
 version: "3"
 services:
   web:
-    image: "dbist/flask-standalone:v2"
+    image: "dbist/flask-standalone:v3"
     deploy:
-      replicas: 2
+# fix python code to only execute schema creation once, otherwise app doesn't work
+# then you can scale the app to add more replicas
+      replicas: 1
       restart_policy:
         condition: on-failure
       resources:
@@ -12,8 +14,9 @@ services:
           memory: 50M
     ports:
       - "5000:5000"
-    volumes:
-      - .:/code
+# figure out how to bind volume on remote machine, otherwise getting error
+#    volumes:
+#      - .:/code
     environment:
       FLASK_ENV: development
     depends_on:
@@ -44,5 +47,6 @@ services:
         constraints: [node.role == manager]
     networks:
       - webnet
+
 networks:
   webnet:
