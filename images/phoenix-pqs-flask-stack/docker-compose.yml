@@ -1,7 +1,7 @@
 version: "3"
 services:
   web:
-    image: flask-standalone:stable
+    image: "dbist/flask-standalone:v2"
     deploy:
       replicas: 2
       restart_policy:
@@ -24,6 +24,7 @@ services:
     image: "dbist/apache-phoenix-pqs:4.14.2"
     ports:
       - "8765:8765"
+# figure out where to create this directory? otherwise it doesn't work
 #    volumes:
 #      - "/home/docker/data:/pqs"
     deploy:
