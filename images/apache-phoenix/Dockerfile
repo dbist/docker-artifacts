@@ -1,10 +1,10 @@
 FROM dbist/apache-hbase:1.4.10 AS hbase
-LABEL maintainer="artemervits at gmail dot com"
-
-ARG PHOENIX_VERSION=4.14.2-HBase-1.4
+LABEL maintainer="generic13 at gmail dot com"
+LABEL version="4.14.3RC1"
+ENV REFRESHED_AT 2019_08_07
+ARG PHOENIX_VERSION=4.14.3-HBase-1.4
 ARG PHOENIX_NAME=apache-phoenix
-
-ENV PHOENIX_URL https://www-us.apache.org/dist/phoenix/apache-phoenix-$PHOENIX_VERSION/bin/apache-phoenix-$PHOENIX_VERSION-bin.tar.gz
+ENV PHOENIX_URL https://dist.apache.org/repos/dist/dev/phoenix/apache-phoenix-$PHOENIX_VERSION-rc1/bin/apache-phoenix-$PHOENIX_VERSION-bin.tar.gz
 
 RUN wget --no-verbose -O phoenix.tar.gz "$PHOENIX_URL" && \
     mkdir /opt/phoenix && \
