@@ -1,4 +1,9 @@
 Docker image for [Apache Phoenix Query Server](https://phoenix.apache.org/server.html) client application 
+run container with the following:
+```
+docker image build -t dbist/apache-phoenix-pqs-client:4.14.3 .
+docker run -d -it dbist/apache-phoenix-pqs-client:4.14.3 bin/bash
+```
 
 ##### Tested versions:
  - 4.14.3
