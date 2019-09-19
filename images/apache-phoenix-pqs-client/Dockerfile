@@ -1,4 +1,4 @@
-FROM dbist/apache-phoenix-pqs:4.14.2
+FROM dbist/apache-phoenix-pqs:4.14.3
 LABEL maintainer="artemervits at gmail dot com"
 
 RUN apt-get update

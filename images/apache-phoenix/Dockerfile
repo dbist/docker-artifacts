@@ -1,7 +1,7 @@
 FROM dbist/apache-hbase:1.4.10 AS hbase
 LABEL maintainer="artemervits at gmail dot com"
 
-ARG PHOENIX_VERSION=4.14.2-HBase-1.4
+ARG PHOENIX_VERSION=4.14.3-HBase-1.4
 ARG PHOENIX_NAME=apache-phoenix
 
 ENV PHOENIX_URL https://www-us.apache.org/dist/phoenix/apache-phoenix-$PHOENIX_VERSION/bin/apache-phoenix-$PHOENIX_VERSION-bin.tar.gz
