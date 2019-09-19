@@ -1,4 +1,4 @@
-FROM dbist/apache-phoenix:4.14.2 AS phoenix
+FROM dbist/apache-phoenix:4.14.3 AS phoenix
 LABEL maintainer="artemervits at gmail dot com"
 
 COPY --chown=root:root pqs-entrypoint.sh /usr/local/bin/
